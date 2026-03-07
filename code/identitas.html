@@ -4,95 +4,96 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Identitas Kelompok</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        :root {
+            --primary: #05503C;
+            --secondary: #FDCA00;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', 'Segoe UI', sans-serif;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f5f7fa;
-            min-height: 100vh;
+            background: #f4f7f6;
             color: #333;
         }
 
-        /* Navbar */
-        .navbar {
-            background: #05503C;
-            box-shadow: 0 4px 12px rgba(5, 80, 60, 0.15);
-            position: sticky;
-            top: 0;
-            z-index: 100;
+        /* --- HEADER --- */
+        .header-wrapper {
+            background: linear-gradient(135deg, var(--primary) 0%, #0a7a52 100%);
+            color: white;
+            padding: 30px 0;
+            position: relative;
+            overflow: hidden;
         }
 
-        .navbar-container {
+        .header-wrapper::before {
+            content: "KLP 22";
+            position: absolute;
+            font-size: 20rem;
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.03);
+            bottom: -50px;
+            right: -20px;
+            line-height: 1;
+        }
+
+        .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 25px;
+            position: relative;
+        }
+
+        .nav-mini {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 70px;
         }
 
-        .navbar-brand {
-            font-size: 24px;
-            font-weight: bold;
-            color: #FDCA00;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 30px;
-            list-style: none;
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--secondary);
+            letter-spacing: -1px;
         }
 
         .nav-links a {
+            color: white;
             text-decoration: none;
-            color: #FFFFFF;
+            margin-left: 25px;
             font-weight: 600;
-            padding: 8px 16px;
-            border-radius: 6px;
-            transition: all 0.3s ease;
-            cursor: pointer;
+            font-size: 0.9rem;
+            transition: 0.3s;
         }
 
         .nav-links a:hover {
-            background: #FDCA00;
-            color: #05503C;
+            color: var(--secondary);
         }
 
-        .nav-links a.active {
-            background: #FDCA00;
-            color: #05503C;
-            border-radius: 8px;
-        }
-
-        /* Container */
-        .container {
-            max-width: 1200px;
-            margin: 40px auto;
-            padding: 0 20px;
-            min-height: calc(100vh - 150px);
-        }
-
-        /* Halaman 2 - Identitas */
+        /* --- PAGE TITLE --- */
         .page-title {
             text-align: center;
             color: #05503C;
-            margin-bottom: 50px;
+            margin-top: 60px;
+            margin-bottom: 80px;
             font-size: 36px;
             font-weight: bold;
         }
 
+        /* --- IDENTITY SECTION --- */
         .identity-section {
             background: white;
             border-radius: 50px;
             padding: 40px;
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
             margin-bottom: 50px;
+            margin-top: -50px;
         }
 
         .section-title {
@@ -105,21 +106,27 @@
         }
 
         .member-card {
-            background: #f7f7f7;
-            border-radius: 100px;
+            background: #f6f6f6;
+            border-radius: 50px;
             padding: 30px 20px;
             text-align: center;
             color: #05503C;
-            transition: all 0.3s ease;
+            transition: 0.4s;
             margin-bottom: 20px;
             position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+        }
+
+        .member-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
         }
 
         .member-photo {
             width: 200px;
             height: 200px;
             margin: 0 auto 20px;
-            border-radius: 12px;
+            border-radius: 15px;
             object-fit: cover;
         }
 
@@ -128,20 +135,15 @@
             height: 240px;
         }
 
-        .member-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(5, 80, 60, 0.2);
-        }
-
         .member-card.pembimbing {
-            background: #FDCA00;
-            color: #05503C;
+            background: var(--secondary);
+            color: var(--primary);
             grid-column: 1 / -1;
             margin-bottom: 40px;
         }
 
         .member-card.pembimbing:hover {
-            box-shadow: 0 10px 30px rgba(253, 202, 0, 0.3);
+            box-shadow: 0 20px 40px rgba(253, 202, 0, 0.2);
         }
 
         .member-name {
@@ -151,14 +153,14 @@
         }
 
         .member-role {
-            font-size: 18px;
+            font-size: 16px;
             opacity: 0.75;
         }
 
         .members-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
+            gap: 30px;
         }
 
         .pembimbing-grid {
@@ -173,32 +175,41 @@
             text-align: center;
             padding: 30px;
             color: white;
-            background: #05503C;
+            background: #1a1a1a;
             margin-top: 50px;
         }
 
-        @media (max-width: 768px) {
-            .navbar-container {
-                flex-direction: column;
-                height: auto;
-                padding: 15px 20px;
+        @media (max-width: 992px) {
+            .nav-links a {
+                margin-left: 15px;
             }
 
-            .nav-links {
-                gap: 15px;
-                margin-top: 15px;
+            .members-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+
+            .identity-section {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .logo-text {
+                font-size: 1.2rem;
+            }
+
+            .nav-links a {
+                margin-left: 10px;
+                font-size: 0.8rem;
             }
 
             .page-title {
                 font-size: 28px;
             }
 
-            .identity-section {
-                padding: 20px;
-            }
-
             .members-grid {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: 1fr;
             }
 
             .section-title {
@@ -208,27 +219,22 @@
     </style>
 </head>
 <body>
-    <!-- Navbar -->
-    <nav class="navbar">
-        <div class="navbar-container">
-            <div class="navbar-brand">📊 Luaran Kelompok 22 Dusun Nglencer</div>
-            <ul class="nav-links">
-                <a class="nav-link" href="index.html">Dashboard</a>
-                <a class="nav-link active" href="identitas.html">Identitas Kelompok</a>
-            </ul>
+    <!-- Header -->
+    <header class="header-wrapper">
+        <div class="container">
+            <nav class="nav-mini">
+                <div class="logo-text">KEL.22 <span style="color:white">NGLENCER</span></div>
+                <div class="nav-links">
+                    <a href="index.html">Beranda</a>
+                    <a href="identitas.html">Profil Tim</a>
+                    <a href="#">Kontak</a>
+                </div>
+            </nav>
         </div>
-    </nav>
+    </header>
 
     <!-- Container -->
     <div class="container">
-        <!-- 
-            INSTRUKSI MEMASUKKAN FOTO:
-            1. Taruh foto di folder /img/
-            2. Nama file untuk pembimbing: pembimbing.jpg
-            3. Nama file untuk anggota: anggota-1.jpg, anggota-2.jpg, ... anggota-9.jpg
-            4. Format bisa JPG, PNG, atau JPEG (ukuran minimal 300x300px)
-            5. Jika foto belum ada, placeholder akan menampilkan error (ganti nama file sesuai urutan)
-        -->
         <!-- Halaman 2: Identitas Kelompok -->
         <h1 class="page-title">Identitas Kelompok</h1>
 
