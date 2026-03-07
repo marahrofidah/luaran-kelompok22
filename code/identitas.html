@@ -101,48 +101,36 @@
             color: #05503C;
             margin-bottom: 30px;
             text-align: center;
-            border-bottom: 3px solid #FDCA00;
             padding-bottom: 15px;
-            position: relative;
-        }
-
-        .section-title::before {
-            content: '';
-            position: absolute;
-            bottom: -3px;
-            left: 0;
-            width: 40px;
-            height: 3px;
-            background: #0a7a52;
         }
 
         .member-card {
-            background: white;
-            border-radius: 10px;
-            padding: 25px;
+            background: #f7f7f7;
+            border-radius: 100px;
+            padding: 30px 20px;
             text-align: center;
             color: #05503C;
             transition: all 0.3s ease;
             margin-bottom: 20px;
-            border: 2px solid #0a7a52;
             position: relative;
         }
 
-        .member-card::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: #FDCA00;
-            border-radius: 10px 10px 0 0;
+        .member-photo {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 20px;
+            border-radius: 12px;
+            object-fit: cover;
+        }
+
+        .member-card.pembimbing .member-photo {
+            width: 240px;
+            height: 240px;
         }
 
         .member-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(5, 80, 60, 0.15);
-            border-color: #FDCA00;
+            box-shadow: 0 10px 30px rgba(5, 80, 60, 0.2);
         }
 
         .member-card.pembimbing {
@@ -150,16 +138,10 @@
             color: #05503C;
             grid-column: 1 / -1;
             margin-bottom: 40px;
-            border: 2px solid #05503C;
-        }
-
-        .member-card.pembimbing::after {
-            background: #05503C;
         }
 
         .member-card.pembimbing:hover {
-            box-shadow: 0 10px 25px rgba(253, 202, 0, 0.25);
-            border-color: #05503C;
+            box-shadow: 0 10px 30px rgba(253, 202, 0, 0.3);
         }
 
         .member-name {
@@ -169,13 +151,13 @@
         }
 
         .member-role {
-            font-size: 14px;
+            font-size: 18px;
             opacity: 0.75;
         }
 
         .members-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 20px;
         }
 
@@ -216,7 +198,7 @@
             }
 
             .members-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(2, 1fr);
             }
 
             .section-title {
@@ -239,57 +221,75 @@
 
     <!-- Container -->
     <div class="container">
+        <!-- 
+            INSTRUKSI MEMASUKKAN FOTO:
+            1. Taruh foto di folder /img/
+            2. Nama file untuk pembimbing: pembimbing.jpg
+            3. Nama file untuk anggota: anggota-1.jpg, anggota-2.jpg, ... anggota-9.jpg
+            4. Format bisa JPG, PNG, atau JPEG (ukuran minimal 300x300px)
+            5. Jika foto belum ada, placeholder akan menampilkan error (ganti nama file sesuai urutan)
+        -->
         <!-- Halaman 2: Identitas Kelompok -->
-        <h1 class="page-title">👥 Identitas Kelompok</h1>
+        <h1 class="page-title">Identitas Kelompok</h1>
 
         <div class="identity-section">
             <!-- Pembimbing -->
-            <h2 class="section-title">👨‍🏫 Pembimbing</h2>
+            <h2 class="section-title">Pembimbing</h2>
             <div class="pembimbing-grid">
                 <div class="member-card pembimbing">
+                    <img src="../img/pembimbing.jpg" alt="Pembimbing" class="member-photo">
                     <div class="member-name">Dr. Nama Pembimbing</div>
                     <div class="member-role">Dosen Pembimbing</div>
                 </div>
             </div>
 
             <!-- Anggota Kelompok -->
-            <h2 class="section-title">👫 Anggota Kelompok</h2>
+            <h2 class="section-title">Anggota Kelompok 22</h2>
             <div class="members-grid">
                 <div class="member-card">
-                    <div class="member-name">Anggota 1</div>
-                    <div class="member-role">NIM: 123456</div>
+                    <img src="../img/anggota-1.png" alt="Anggota 1" class="member-photo">
+                    <div class="member-name">Nuraini Rachmawati</div>
+                    <div class="member-role">Ketua</div>
                 </div>
                 <div class="member-card">
-                    <div class="member-name">Anggota 2</div>
-                    <div class="member-role">NIM: 123457</div>
+                    <img src="../img/anggota-2.png" alt="Anggota 2" class="member-photo">
+                    <div class="member-name">Tamara Afsah</div>
+                    <div class="member-role">Bendahara</div>
                 </div>
                 <div class="member-card">
-                    <div class="member-name">Anggota 3</div>
-                    <div class="member-role">NIM: 123458</div>
+                    <img src="../img/anggota-3.png" alt="Anggota 3" class="member-photo">
+                    <div class="member-name">Amalina Hidayah Jati</div>
+                    <div class="member-role">Sekertaris</div>
                 </div>
                 <div class="member-card">
-                    <div class="member-name">Anggota 4</div>
-                    <div class="member-role">NIM: 123459</div>
+                    <img src="../img/anggota-4.png" alt="Anggota 4" class="member-photo">
+                    <div class="member-name">Putri Kamilah</div>
+                    <div class="member-role">Kesehatan</div>
                 </div>
                 <div class="member-card">
-                    <div class="member-name">Anggota 5</div>
-                    <div class="member-role">NIM: 123460</div>
+                    <img src="../img/anggota-5.png" alt="Anggota 5" class="member-photo">
+                    <div class="member-name">Kharisma Diva A.</div>
+                    <div class="member-role">Perlengkapan</div>
                 </div>
                 <div class="member-card">
-                    <div class="member-name">Anggota 6</div>
-                    <div class="member-role">NIM: 123461</div>
+                    <img src="../img/anggota-6.png" alt="Anggota 6" class="member-photo">
+                    <div class="member-name">Nida Fatimatuzzahra</div>
+                    <div class="member-role">Perlengkapan</div>
                 </div>
                 <div class="member-card">
-                    <div class="member-name">Anggota 7</div>
-                    <div class="member-role">NIM: 123462</div>
+                    <img src="../img/anggota-7.png" alt="Anggota 7" class="member-photo">
+                    <div class="member-name">Firlana Umi Azzakiy</div>
+                    <div class="member-role">PDD Inti</div>
                 </div>
                 <div class="member-card">
-                    <div class="member-name">Anggota 8</div>
-                    <div class="member-role">NIM: 123463</div>
+                    <img src="../img/anggota-8.png" alt="Anggota 8" class="member-photo">
+                    <div class="member-name">Mar'ah Rofidah Abidah Kh.</div>
+                    <div class="member-role">Dokumentasi</div>
                 </div>
                 <div class="member-card">
-                    <div class="member-name">Anggota 9</div>
-                    <div class="member-role">NIM: 123464</div>
+                    <img src="../img/anggota-9.png" alt="Anggota 9" class="member-photo">
+                    <div class="member-name">Raisa Hasna Fakhira A.</div>
+                    <div class="member-role">Profiling</div>
                 </div>
             </div>
         </div>
