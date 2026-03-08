@@ -170,50 +170,124 @@
             margin-bottom: 40px;
         }
 
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 30px;
-            color: white;
+        .fat-footer {
             background: #1a1a1a;
-            margin-top: 50px;
+            color: #d1d1d1;
+            padding: 80px 0 30px 0;
+            margin-top: 100px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+
+        .footer-col h4 {
+            color: white;
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-col h4::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--secondary);
+        }
+
+        .footer-col p {
+            font-size: 0.9rem;
+            line-height: 1.8;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 12px;
+            font-size: 0.9rem;
+        }
+
+        .footer-col ul li a {
+            color: #d1d1d1;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--secondary);
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            color: white;
+            transition: 0.3s;
+        }
+
+        .social-links a:hover {
+            background: var(--secondary);
+            color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+        }
+
+
+        /* Tablet */
+        @media (max-width: 1024px) {
+            .grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* HP */
+        @media (max-width: 600px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         @media (max-width: 992px) {
-            .nav-links a {
-                margin-left: 15px;
-            }
 
-            .members-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 20px;
-            }
-
-            .identity-section {
-                padding: 20px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .logo-text {
-                font-size: 1.2rem;
-            }
-
-            .nav-links a {
-                margin-left: 10px;
-                font-size: 0.8rem;
-            }
-
-            .page-title {
-                font-size: 28px;
-            }
-
-            .members-grid {
+            .hero-content,
+            .footer-grid {
                 grid-template-columns: 1fr;
             }
 
-            .section-title {
-                font-size: 24px;
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .footer-grid {
+                gap: 30px;
             }
         }
     </style>
@@ -227,7 +301,6 @@
                 <div class="nav-links">
                     <a href="index.html">Beranda</a>
                     <a href="identitas.html">Profil Tim</a>
-                    <a href="#">Kontak</a>
                 </div>
             </nav>
         </div>
@@ -301,9 +374,55 @@
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2026 Luaran Kelompok 22 Dusun Nglencer. All rights reserved.</p>
+    <footer class="fat-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Tentang Proyek</h4>
+                    <p>Website ini merupakan repositori digital yang dikembangkan untuk mendokumentasikan setiap hasil
+                        karya nyata mahasiswa dalam program pengabdian masyarakat di Dusun Nglencer tahun 2026.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Kategori Luaran</h4>
+                    <ul>
+                        <li><a href="#">Video Dokumentasi</a></li>
+                        <li><a href="#">Jurnal Ilmiah</a></li>
+                        <li><a href="#">Hak Kekayaan Intelektual</a></li>
+                        <li><a href="#">Desain & Media Massa</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Link Terkait</h4>
+                    <ul>
+                        <li><a href="#">Situs Universitas</a></li>
+                        <li><a href="#">LPPM</a></li>
+                        <li><a href="#">Pemerintah Desa</a></li>
+                        <li><a href="#">Dokumen Panduan</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Hubungi Kami</h4>
+                    <p><i class="fas fa-map-marker-alt" style="color:var(--secondary)"></i> Posko KLP 22, Balai Desa
+                        Nglencer</p>
+                    <p style="margin-top: 10px;"><i class="fas fa-envelope" style="color:var(--secondary)"></i>
+                        klp22nglencer@email.com</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Kelompok 22 Dusun Nglencer. All Rights Reserved.</p>
+                <p>Created with ❤️ by KEL 22 Team</p>
+            </div>
+        </div>
     </footer>
+
+    <script>
+        function downloadFile(name) {
+            alert(`Mengarahkan ke file: ${name}\nMohon pastikan file tersedia di direktori /files/`);
+        }
+    </script>
 </body>
 </html>
