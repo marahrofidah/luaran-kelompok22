@@ -103,18 +103,21 @@
             margin-bottom: 30px;
             text-align: center;
             padding-bottom: 15px;
+            will-change: transform, opacity;
         }
 
         .member-card {
             background: #f6f6f6;
-            border-radius: 50px;
+            border-radius: 80px;
             padding: 30px 20px;
             text-align: center;
             color: #05503C;
-            transition: 0.4s;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
             margin-bottom: 20px;
             position: relative;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+            will-change: box-shadow;
+            overflow: visible;
         }
 
         .member-card:hover {
@@ -138,8 +141,9 @@
         .member-card.pembimbing {
             background: var(--secondary);
             color: var(--primary);
-            grid-column: 1 / -1;
             margin-bottom: 40px;
+            width: 320px;
+            padding: 20px 20px 30px 20px;
         }
 
         .member-card.pembimbing:hover {
@@ -164,10 +168,137 @@
         }
 
         .pembimbing-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 20px;
+            display: flex;
+            justify-content: center;
             margin-bottom: 40px;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        @keyframes glow {
+            0%, 100% {
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03), 0 0 20px rgba(5, 80, 60, 0);
+            }
+            50% {
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03), 0 0 30px rgba(5, 80, 60, 0.3);
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: -1000px 0;
+            }
+            100% {
+                background-position: 1000px 0;
+            }
+        }
+
+        @keyframes ripple {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+        }
+
+        .fade-in.visible {
+            animation: fadeInUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
+        /* Floating effect */
+        .member-card.visible {
+            animation: fadeInUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
+        .member-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.12);
+        }
+
+        .member-card.pembimbing:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px rgba(253, 202, 0, 0.2);
+        }
+
+        /* Ripple effect */
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.6);
+            transform: scale(0);
+            animation: ripple 0.6s ease-out;
+            pointer-events: none;
+        }
+
+        /* Enhanced photo effect */
+        .member-photo {
+            transition: all 0.4s ease;
+            filter: brightness(1) saturate(1);
+            position: relative;
+            z-index: 10;
+        }
+
+        .member-card:hover .member-photo {
+            filter: brightness(1.15) saturate(1.3);
+        }
+
+        .member-card.pembimbing:hover .member-photo {
+            filter: brightness(1.15) saturate(1.3);
+        }
+
+        /* Member info styling */
+        .member-info {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .member-card:hover .member-info {
+            max-height: 200px;
+        }
+
+        .member-name {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            transition: 0.3s ease;
+        }
+
+        .member-role {
+            font-size: 16px;
+            opacity: 0;
+            transition: opacity 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            display: block;
+        }
+
+        .member-card:hover .member-role {
+            opacity: 0.75;
+        }
+
+        /* Cursor custom */
+        body {
+            cursor: auto;
         }
 
         .fat-footer {
@@ -316,9 +447,11 @@
             <h2 class="section-title">Pembimbing</h2>
             <div class="pembimbing-grid">
                 <div class="member-card pembimbing">
-                    <img src="../img/pembimbing.jpg" alt="Pembimbing" class="member-photo">
-                    <div class="member-name">Dr. Nama Pembimbing</div>
-                    <div class="member-role">Dosen Pembimbing</div>
+                    <img src="../img/pembimbing.png" alt="Pembimbing" class="member-photo">
+                    <div class="member-info">
+                        <div class="member-name">Maulana Ashari M.Pd.</div>
+                        <div class="member-role">Dosen Pembimbing Lapangan</div>
+                    </div>
                 </div>
             </div>
 
@@ -327,48 +460,66 @@
             <div class="members-grid">
                 <div class="member-card">
                     <img src="../img/anggota-1.png" alt="Anggota 1" class="member-photo">
-                    <div class="member-name">Nuraini Rachmawati</div>
-                    <div class="member-role">Ketua</div>
+                    <div class="member-info">
+                        <div class="member-name">Nuraini Rachmawati</div>
+                        <div class="member-role">Ketua</div>
+                    </div>
                 </div>
                 <div class="member-card">
                     <img src="../img/anggota-2.png" alt="Anggota 2" class="member-photo">
-                    <div class="member-name">Tamara Afsah</div>
-                    <div class="member-role">Bendahara</div>
+                    <div class="member-info">
+                        <div class="member-name">Tamara Afsah</div>
+                        <div class="member-role">Bendahara</div>
+                    </div>
                 </div>
                 <div class="member-card">
                     <img src="../img/anggota-3.png" alt="Anggota 3" class="member-photo">
-                    <div class="member-name">Amalina Hidayah Jati</div>
-                    <div class="member-role">Sekertaris</div>
+                    <div class="member-info">
+                        <div class="member-name">Amalina Hidayah Jati</div>
+                        <div class="member-role">Sekertaris</div>
+                    </div>
                 </div>
                 <div class="member-card">
                     <img src="../img/anggota-4.png" alt="Anggota 4" class="member-photo">
-                    <div class="member-name">Putri Kamilah</div>
-                    <div class="member-role">Kesehatan</div>
+                    <div class="member-info">
+                        <div class="member-name">Putri Kamilah</div>
+                        <div class="member-role">Kesehatan</div>
+                    </div>
                 </div>
                 <div class="member-card">
                     <img src="../img/anggota-5.png" alt="Anggota 5" class="member-photo">
-                    <div class="member-name">Kharisma Diva A.</div>
-                    <div class="member-role">Perlengkapan</div>
+                    <div class="member-info">
+                        <div class="member-name">Kharisma Diva A.</div>
+                        <div class="member-role">Perlengkapan</div>
+                    </div>
                 </div>
                 <div class="member-card">
                     <img src="../img/anggota-6.png" alt="Anggota 6" class="member-photo">
-                    <div class="member-name">Nida Fatimatuzzahra</div>
-                    <div class="member-role">Perlengkapan</div>
+                    <div class="member-info">
+                        <div class="member-name">Nida Fatimatuzzahra</div>
+                        <div class="member-role">Perlengkapan</div>
+                    </div>
                 </div>
                 <div class="member-card">
                     <img src="../img/anggota-7.png" alt="Anggota 7" class="member-photo">
-                    <div class="member-name">Firlana Umi Azzakiy</div>
-                    <div class="member-role">PDD Inti</div>
+                    <div class="member-info">
+                        <div class="member-name">Firlana Umi Azzakiy</div>
+                        <div class="member-role">PDD Inti</div>
+                    </div>
                 </div>
                 <div class="member-card">
                     <img src="../img/anggota-8.png" alt="Anggota 8" class="member-photo">
-                    <div class="member-name">Mar'ah Rofidah Abidah Kh.</div>
-                    <div class="member-role">Dokumentasi</div>
+                    <div class="member-info">
+                        <div class="member-name">Mar'ah Rofidah Abidah Kh.</div>
+                        <div class="member-role">Dokumentasi</div>
+                    </div>
                 </div>
                 <div class="member-card">
                     <img src="../img/anggota-9.png" alt="Anggota 9" class="member-photo">
-                    <div class="member-name">Raisa Hasna Fakhira A.</div>
-                    <div class="member-role">Profiling</div>
+                    <div class="member-info">
+                        <div class="member-name">Raisa Hasna Fakhira A.</div>
+                        <div class="member-role">Profiling</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -418,11 +569,5 @@
             </div>
         </div>
     </footer>
-
-    <script>
-        function downloadFile(name) {
-            alert(`Mengarahkan ke file: ${name}\nMohon pastikan file tersedia di direktori /files/`);
-        }
-    </script>
 </body>
 </html>
